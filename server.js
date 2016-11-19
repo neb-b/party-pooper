@@ -9,6 +9,7 @@ import boomMiddleware from './middlewares/boom.middleware';
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Mongo instance
 db();
 
 app.use(compression());
