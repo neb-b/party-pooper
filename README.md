@@ -4,5 +4,5 @@ Basic server exercise.
 
 # Entities
 
-`User`, `Venue` and `Event`
+`User`, `Venue`, `Artist` and `Event`
 
