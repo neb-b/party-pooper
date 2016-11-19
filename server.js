@@ -1,25 +1,15 @@
 import express from 'express';
-import mongoose from 'mongoose';
 import compression from 'compression';
 import bodyParser from 'body-parser';
-import Promise from 'bluebird';
 import morgan from 'morgan';
 
+import db from './db.init';
 import boomMiddleware from './middlewares/boom.middleware';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const mongoURL = process.env.MONGO_URL || 'mongodb://localhost:27017/party-pooper';
 
-// Set bluebird promises as mongoose promise
-mongoose.Promise = Promise;
-mongoose.connect(mongoURL, error => {
-  if(error) {
-    console.error(`RUN  Mongodb !`);
-    throw error;
-  }
-  console.error(`Connected to Mongodb instance at ${mongoURL}!`)
-});
+db();
 
 app.use(compression());
 app.use(morgan('dev'));
