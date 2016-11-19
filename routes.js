@@ -10,9 +10,7 @@ import VenueModel from './models/venue.models';
 import EventModel from './models/event.models';
 import ArtistModel from './models/artist.models';
 
-import User from '../models/user';
-
-const instanciation = () => {
+const instantiation = () => {
   return {
     User: new UserController ({ UserModel })
     Venue: new VenueController ({ VenueModel })
@@ -23,7 +21,7 @@ const instanciation = () => {
 
 const Routing = () => {
   const router = new Router();
-  var Controllers = instanciation();
+  var Controllers = instantiation();
 
   // User Routes
   router.get('/users/:id', Controller.Users.getUser.bind(Controller.Users));
