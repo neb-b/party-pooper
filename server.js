@@ -7,12 +7,6 @@ import morgan from 'morgan';
 
 import boomMiddleware from './middlewares/boom.middleware';
 
-// import teams from './routes/team';
-// import users from './routes/user';
-// import tourneys from './routes/tourney';
-
-// import UserModel from './models/user';
-
 const app = express();
 const PORT = process.env.PORT || 3000;
 const mongoURL = process.env.MONGO_URL || 'mongodb://localhost:27017/party-pooper';
@@ -31,10 +25,6 @@ app.use(compression());
 app.use(morgan('dev'));
 app.use(bodyParser.json({ limit: '20mb' }));
 app.use(bodyParser.urlencoded({ limit: '20mb', extended: false }));
-
-// app.use('/users', users);
-// app.use('/teams', teams);
-// app.use('/tourneys', tourneys);
 
 // Boom badboy middleware
 app.use(boomMiddleware);
