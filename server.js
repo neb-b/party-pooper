@@ -24,4 +24,4 @@ app.use('/api', Routing());
 // Boom badboy middleware
 app.use(boomMiddleware);
 
-app.listen(PORT, () => console.log('Runnign Server on 8080'));// eslint-disable-line no-console
+app.listen(PORT, () => console.log(`Runnign Server on ${PORT}`));// eslint-disable-line no-console
