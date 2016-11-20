@@ -41,7 +41,7 @@ describe('EventController', () => {
   context('createEvent', () => {
     it('returns new event', (done) => {
       let controller = new EventController();
-      let event = { name: 'test-event' };
+      let event = { name: 'test-name' };
       let mockResponse = { send: td.function() };
       let mockRequest = { body: { name: 'test-name'} };
       controller.Event = { createAndSave: td.function() };
@@ -50,6 +50,40 @@ describe('EventController', () => {
       td.when(mockResponse.send(event)).thenDo(() => done());
 
       controller.createEvent(mockRequest, mockResponse, _.noop);
-    })
-  })
+    });
+  });
+
+  context('updateEvent', () => {
+    it('returns new updated event', (done) => {
+      let controller = new EventController();
+      let event = { name: 'test-name' };
+      let mockResponse = { send: td.function() };
+      let mockRequest = {
+        params: { id: 'test-id' },
+        body: { name: 'test-name'}
+      };
+      controller.Event = { findByIdAndUpdate: td.function() };
+
+      td.when(controller.Event.findByIdAndUpdate(mockRequest.params.id, mockRequest.body, { new: true }))
+        .thenReturn(event);
+      td.when(mockResponse.send(event)).thenDo(() => done());
+
+      controller.updateEvent(mockRequest, mockResponse, _.noop);
+    });
+  });
+
+  context('deleteEvent', () => {
+    it('returns deleted event', (done) => {
+      let controller = new EventController();
+      let event = { name: 'test-event' };
+      let mockResponse = { send: td.function() };
+      let mockRequest = { params: { id: 'test-id'} };
+      controller.Event = { findByIdAndRemove: td.function() };
+
+      td.when(controller.Event.findByIdAndRemove(mockRequest.params.id)).thenReturn(event);
+      td.when(mockResponse.send(event)).thenDo(() => done());
+
+      controller.deleteEvent(mockRequest, mockResponse, _.noop);
+    });
+  });
 });

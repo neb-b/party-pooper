@@ -39,7 +39,7 @@ EventController.prototype.updateEvent = function updateEvent(req, res, next) {
 
 EventController.prototype.deleteEvent = function deleteEvent(req, res, next) {
   return Promise.resolve(this.Event.findByIdAndRemove(req.params.id))
-    .then(user => res.send(user))
+    .then(event => res.send(event))
     .catch(err => next(Boom.wrap(err)));
 };
 
