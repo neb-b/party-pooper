@@ -2,6 +2,7 @@ import td from 'testdouble';
 import _ from 'lodash';
 
 import EventController from '../../controllers/events.controller';
+import EventModel from '../../models/event.model';
 
 describe('EventController', () => {
   afterEach(() => {
@@ -27,7 +28,7 @@ describe('EventController', () => {
       let controller = new EventController();
       let event = { name: 'test-event' };
       let mockResponse = { send: td.function() };
-      let mockRequest = { params: { id: 'test-id '} };
+      let mockRequest = { params: { id: 'test-id'} };
       controller.Event = { findById: td.function() };
 
       td.when(controller.Event.findById(mockRequest.params.id)).thenReturn(event);
@@ -36,4 +37,19 @@ describe('EventController', () => {
       controller.getEvent(mockRequest, mockResponse, _.noop);
     });
   });
+
+  context('createEvent', () => {
+    it('returns new event', (done) => {
+      let controller = new EventController();
+      let event = { name: 'test-event' };
+      let mockResponse = { send: td.function() };
+      let mockRequest = { body: { name: 'test-name'} };
+      controller.Event = { createAndSave: td.function() };
+
+      td.when(controller.Event.createAndSave(mockRequest.body)).thenResolve(event);
+      td.when(mockResponse.send(event)).thenDo(() => done());
+
+      controller.createEvent(mockRequest, mockResponse, _.noop);
+    })
+  })
 });

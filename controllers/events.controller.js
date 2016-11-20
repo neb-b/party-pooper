@@ -26,8 +26,7 @@ EventController.prototype.getEvent = function getEvent(req, res, next) {
 EventController.prototype.createEvent = function createEvent(req, res, next) {
   const { name } = req.body;
 
-  return Promise.resolve(new this.Event({ name }))
-    .then(event => Promise.resolve(event.save()))
+  return this.Event.createAndSave({ name })
     .then(newEvent => res.send(newEvent))
     .catch(err => next(Boom.wrap(err)));
 };
