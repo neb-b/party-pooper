@@ -1,10 +1,27 @@
+import Promise from 'bluebird';
 import mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
 
-const Venue = new Schema({
+const VenueSchema = new Schema({
   name: { type: 'String', required: true },
   dateAdded: { type: 'Date', default: Date.now, required: true },
 });
 
-export default mongoose.model('Venue', Venue);
+VenueSchema.statics.createAndSave = Promise.method(function (props) {
+  let newVenue = new VenueModel(props);
+
+  newVenue.save(function(err, result) {
+    if(err) {
+      throw new Error(err);
+    }
+
+    return result;
+  });
+
+  return newEvent
+});
+
+const VenueModel = mongoose.model('Venue', VenueSchema);
+
+export default VenueModel;
