@@ -25,6 +25,7 @@ const Routing = () => {
 
   // User Routes
   router.get('/users/:id', Controllers.Users.getUser.bind(Controllers.Users));
+  router.get('/users', Controllers.Users.getUsers.bind(Controllers.Users));
   router.post('/users', Controllers.Users.createUser.bind(Controllers.Users));
   router.patch('/users/:id', Controllers.Users.updateUser.bind(Controllers.Users));
   router.delete('/users/:id', Controllers.Users.deleteUser.bind(Controllers.Users));

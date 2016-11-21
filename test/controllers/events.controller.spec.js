@@ -2,12 +2,9 @@ import td from 'testdouble';
 import _ from 'lodash';
 
 import EventController from '../../controllers/events.controller';
-import EventModel from '../../models/event.model';
 
 describe('EventController', () => {
-  afterEach(() => {
-    td.reset();
-  });
+  afterEach(() => td.reset());
 
   context('getEvents', () => {
     it('returns a list of events', (done) => {
