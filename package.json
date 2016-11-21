@@ -30,5 +30,8 @@
     "mongoose": "^4.6.8",
     "morgan": "^1.7.0",
     "testdouble": "^1.9.0"
+  },
+  "devDependencies": {
+    "mocha": "^3.1.2"
   }
 }
