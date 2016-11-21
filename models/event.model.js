@@ -3,21 +3,25 @@ import mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
 
-const Event = new Schema({
+const EventSchema = new Schema({
   name: { type: 'String', required: true },
   dateAdded: { type: 'Date', default: Date.now, required: true },
 });
 
-Event.statics.createAndSave = Promise.method(function (props) {
-  let newEvent = new User(props);
+EventSchema.statics.createAndSave = Promise.method(function (props) {
+  let newEvent = new EventModel(props);
 
   newEvent.save(function(err, result) {
     if(err) {
       throw new Error(err);
     }
-    
-    return newEvent;
+
+    return result;
   });
+
+  return newEvent
 });
 
-export default mongoose.model('Event', Event);
+const EventModel = mongoose.model('Event', EventSchema);
+
+export default EventModel;

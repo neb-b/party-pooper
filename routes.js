@@ -5,17 +5,17 @@ import VenueController from './controllers/venues.controller';
 import EventController from './controllers/events.controller';
 import ArtistController from './controllers/artists.controller';
 
-import UserModel from './models/user.model';
-import VenueModel from './models/venue.model';
-import EventModel from './models/event.model';
-import ArtistModel from './models/artist.model';
+import User from './models/user.model';
+import Venue from './models/venue.model';
+import Event from './models/event.model';
+import Artist from './models/artist.model';
 
 const instantiation = () => {
   return {
-    Users: new UserController ({ UserModel }),
-    Events: new EventController ({ EventModel }),
-    Venues: new VenueController ({ VenueModel }),
-    Artists: new ArtistController ({ ArtistModel })
+    Users: new UserController ({ User }),
+    Events: new EventController ({ Event }),
+    Venues: new VenueController ({ Venue }),
+    Artists: new ArtistController ({ Artist })
   };
 };
 
