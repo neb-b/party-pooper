@@ -78,6 +78,17 @@ describe('EventController', () => {
 
       controller.createEvent(mockRequest, mockResponse, _.noop);
     });
+
+    it.skip('returns 500 if bad parameters are passed', (done) => {
+      let controller = new EventController();
+      let mockRequest = { body: { bad: 'test-name'} };
+      controller.Event = { createAndSave: td.function() };
+
+
+
+      return controller.createEvent(mockRequest, _.noop, done)
+        .catch(err => expect(err.statusCode).to.equal(500));
+    });
   });
 
   context('updateEvent', () => {

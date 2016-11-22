@@ -1,7 +1,11 @@
 // TODO sprada: A proper way to define different types
 // of status codes that come through Boom
 export default function (err, req, res, next) {
-  console.log(err); //Development help, remove for production
-  
+  if(err && err.output){
+    const { payload, statusCode } = err.output;
+    res.status(statusCode);
+    return res.send(payload);
+  }
+
   return res.status(500).send(err);
 }
