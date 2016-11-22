@@ -13,7 +13,7 @@ const UserSchema = new Schema({
 UserSchema.statics.createAndSave = Promise.method(function (props) {
   let newUser = new UserModel(props);
 
-  newUser.save(function(err, result) {
+  newUser.save((err, result) => {
     if(err) {
       throw new Error(err);
     }

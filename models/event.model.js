@@ -11,7 +11,7 @@ const EventSchema = new Schema({
 EventSchema.statics.createAndSave = Promise.method(function (props) {
   let newEvent = new EventModel(props);
 
-  newEvent.save(function(err, result) {
+  newEvent.save((err, result) => {
     if(err) {
       throw new Error(err);
     }

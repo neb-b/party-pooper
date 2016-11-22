@@ -11,7 +11,7 @@ const VenueSchema = new Schema({
 VenueSchema.statics.createAndSave = Promise.method(function (props) {
   let newVenue = new VenueModel(props);
 
-  newVenue.save(function(err, result) {
+  newVenue.save((err, result) => {
     if(err) {
       throw new Error(err);
     }

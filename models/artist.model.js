@@ -11,7 +11,7 @@ const ArtistSchema = new Schema({
 ArtistSchema.statics.createAndSave = Promise.method(function (props) {
   let newArtist = new ArtistModel(props);
 
-  newArtist.save(function(err, result) {
+  newArtist.save((err, result) => {
     if(err) {
       throw new Error(err);
     }
