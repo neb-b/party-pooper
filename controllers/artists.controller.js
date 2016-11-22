@@ -24,9 +24,8 @@ ArtistController.prototype.getArtist = function getArtist(req, res, next) {
 };
 
 ArtistController.prototype.createArtist = function createArtist(req, res, next) {
-  const { name } = req.body;
-
-  return this.Artist.createAndSave({ name })
+  return this.validateInput(req.body)
+    .then(params => this.Artist.createAndSave(params))
     .then(newArtist => res.send(newArtist))
     .catch(err => next(Boom.wrap(err)));
 };
@@ -42,6 +41,14 @@ ArtistController.prototype.deleteArtist = function deleteArtist(req, res, next) 
     .then(artist => res.send(artist))
     .catch(err => next(Boom.wrap(err)));
 };
+
+ArtistController.prototype.validateInput = Promise.method(function validateInput({ name }) {
+  if(!name){
+    throw Boom.badRequest('name parameter is required to create event');
+  }
+
+  return { name };
+});
 
 
 export default ArtistController;

@@ -24,9 +24,8 @@ VenueController.prototype.getVenue = function getVenue(req, res, next) {
 };
 
 VenueController.prototype.createVenue = function createVenue(req, res, next) {
-  const { name } = req.body;
-
-  return this.Venue.createAndSave({ name })
+  return this.validateInput(req.body)
+    .then(params => this.Venue.createAndSave(params))
     .then(newVenue => res.send(newVenue))
     .catch(err => next(Boom.wrap(err)));
 };
@@ -42,6 +41,14 @@ VenueController.prototype.deleteVenue = function deleteVenue(req, res, next) {
     .then(venue => res.send(venue))
     .catch(err => next(Boom.wrap(err)));
 };
+
+VenueController.prototype.validateInput = Promise.method(function validateInput({ name }) {
+  if(!name){
+    throw Boom.badRequest('Name parameter is required to create venue');
+  }
+
+  return { name };
+});
 
 
 export default VenueController;

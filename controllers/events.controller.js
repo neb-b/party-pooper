@@ -25,7 +25,7 @@ EventController.prototype.getEvent = function getEvent(req, res, next) {
 
 EventController.prototype.createEvent = function createEvent(req, res, next) {
   return this.validateInput(req.body)
-    .then(({ name }) => this.Event.createAndSave({ name }))
+    .then(params => this.Event.createAndSave(params))
     .then(newEvent => res.send(newEvent))
     .catch(err => next(Boom.wrap(err)));
 };
