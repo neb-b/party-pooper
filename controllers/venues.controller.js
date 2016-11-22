@@ -50,5 +50,4 @@ VenueController.prototype.validateInput = Promise.method(function validateInput(
   return { name };
 });
 
-
 export default VenueController;
