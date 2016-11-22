@@ -24,9 +24,8 @@ EventController.prototype.getEvent = function getEvent(req, res, next) {
 };
 
 EventController.prototype.createEvent = function createEvent(req, res, next) {
-  const { name } = req.body;
-
-  return this.Event.createAndSave({ name })
+  return this.validateInput(req.body)
+    .then(name => this.Event.createAndSave({ name }))
     .then(newEvent => res.send(newEvent))
     .catch(err => next(Boom.wrap(err)));
 };
@@ -42,5 +41,13 @@ EventController.prototype.deleteEvent = function deleteEvent(req, res, next) {
     .then(event => res.send(event))
     .catch(err => next(Boom.wrap(err)));
 };
+
+EventController.prototype.validateInput = Promise.method(function validateInput({ name }) {
+  if(!name){
+    throw Boom.badRequest('name parameter is required to create event');
+  }
+
+  return name;
+});
 
 export default EventController;
