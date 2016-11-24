@@ -38,6 +38,7 @@ const Routing = () => {
   router.delete('/events/:id', Controllers.Events.deleteEvent.bind(Controllers.Events));
 
   // Venue Routes
+  // TODO (sprada): Authentication? Middleware? Accountkit?
   router.get('/venues/:id', Controllers.Venues.getVenue.bind(Controllers.Venues));
   router.get('/venues/:id/profile', Controllers.Venues.getProfile.bind(Controllers.Venues));
   router.get('/venues', Controllers.Venues.getVenues.bind(Controllers.Venues));
