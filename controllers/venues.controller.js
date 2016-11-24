@@ -16,8 +16,13 @@ VenueController.prototype.getVenues = function getVenues(req, res, next) {
     .catch(() => next(Boom.notFound('No venues found')));
 };
 
+VenueController.prototype.getProfile = function getProfile(req, res, next) {
+  return Promise.resolve(this.Venue.find())
+    .then(venues => res.send(venues))
+    .catch(() => next(Boom.notFound('No venues found')));
+};
+
 VenueController.prototype.getVenue = function getVenue(req, res, next) {
-  // Queries are not promises.
   return Promise.resolve(this.Venue.findById(req.params.id))
     .then(venue => res.send(venue))
     .catch(() => next(Boom.notFound('Venue not found')));

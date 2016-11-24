@@ -18,15 +18,12 @@ UserController.prototype.getUser = function getUser(req, res, next) {
 };
 
 UserController.prototype.getUsers = function getUsers(req, res, next) {
-  // Queries are not promises.
   return Promise.resolve(this.User.find())
     .then(users => res.send(users))
     .catch(() => next(Boom.notFound('Users not found')));
 };
 
 UserController.prototype.createUser = function createUser(req, res, next) {
-  const { username, name, email } = req.body;
-
   return this.validateInput(req.body)
     .then(params => this.User.createAndSave(params))
     .then(newUser => res.send(newUser))

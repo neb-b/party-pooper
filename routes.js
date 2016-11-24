@@ -37,6 +37,14 @@ const Routing = () => {
   router.patch('/events/:id', Controllers.Events.updateEvent.bind(Controllers.Events));
   router.delete('/events/:id', Controllers.Events.deleteEvent.bind(Controllers.Events));
 
+  // Venue Routes
+  router.get('/venues/:id', Controllers.Venues.getVenue.bind(Controllers.Venues));
+  router.get('/venues/:id/profile', Controllers.Venues.getProfile.bind(Controllers.Venues));
+  router.get('/venues', Controllers.Venues.getVenues.bind(Controllers.Venues));
+  router.post('/venues', Controllers.Venues.createVenue.bind(Controllers.Venues));
+  router.patch('/venues/:id', Controllers.Venues.updateVenue.bind(Controllers.Venues));
+  router.delete('/venues/:id', Controllers.Venues.deleteVenue.bind(Controllers.Venues));
+
   return router;
 };
 

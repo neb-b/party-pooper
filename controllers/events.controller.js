@@ -17,7 +17,6 @@ EventController.prototype.getEvents = function getEvents(req, res, next) {
 };
 
 EventController.prototype.getEvent = function getEvent(req, res, next) {
-  // Queries are not promises.
   return Promise.resolve(this.Event.findById(req.params.id))
     .then(event => res.send(event))
     .catch(() => next(Boom.notFound('Event not found')));

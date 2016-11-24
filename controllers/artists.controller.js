@@ -17,7 +17,6 @@ ArtistController.prototype.getArtists = function getArtists(req, res, next) {
 };
 
 ArtistController.prototype.getArtist = function getArtist(req, res, next) {
-  // Queries are not promises.
   return Promise.resolve(this.Artist.findById(req.params.id))
     .then(artist => res.send(artist))
     .catch(() => next(Boom.notFound('Artist not found')));
