@@ -19,7 +19,7 @@ EventSchema.statics.createAndSave = Promise.method(function (props) {
     return result;
   });
 
-  return newEvent
+  return newEvent;
 });
 
 const EventModel = mongoose.model('Event', EventSchema);

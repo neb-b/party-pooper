@@ -19,7 +19,7 @@ VenueSchema.statics.createAndSave = Promise.method(function (props) {
     return result;
   });
 
-  return newEvent
+  return newVenue;
 });
 
 const VenueModel = mongoose.model('Venue', VenueSchema);

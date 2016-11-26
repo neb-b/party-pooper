@@ -21,7 +21,7 @@ UserSchema.statics.createAndSave = Promise.method(function (props) {
     return result;
   });
 
-  return newUser
+  return newUser;
 });
 
 const UserModel = mongoose.model('User', UserSchema);

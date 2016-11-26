@@ -19,7 +19,7 @@ ArtistSchema.statics.createAndSave = Promise.method(function (props) {
     return result;
   });
 
-  return newEvent
+  return newArtist;
 });
 
 const ArtistModel = mongoose.model('Artist', ArtistSchema);

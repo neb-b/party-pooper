@@ -32,7 +32,10 @@ VenueController.prototype.createVenue = function createVenue(req, res, next) {
   return this.validateInput(req.body)
     .then(params => this.Venue.createAndSave(params))
     .then(newVenue => res.send(newVenue))
-    .catch(err => next(Boom.wrap(err)));
+    .catch(err => {
+      console.log(err);
+      next(Boom.wrap(err))
+    });
 };
 
 VenueController.prototype.updateVenue = function updateVenue(req, res, next) {
